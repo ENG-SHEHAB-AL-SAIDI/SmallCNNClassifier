@@ -8,6 +8,7 @@ from torch.utils.data import DataLoader
 from models.CNNClassifier import CNNClassifier 
 from dataset.CNNClassifierDataset import CNNClassifierDataset
 import configs.config as config
+from utils.sessionManager import TrainingSessionManager
 
 
 torch.manual_seed(config.RANDOM_SEED)
@@ -43,7 +44,13 @@ testDataLoader = DataLoader(
     pin_memory=config.PIN_MEMORY
 )
 
-print(trainDataset.classToIdx)
+# CreateSession
+session = TrainingSessionManager(
+    baseDir=config.SESSION_DIR,
+    configFilePath=config.CONFIG_PATH,
+    resumeFromSessionId=config.RESUME_SESSION_ID
+)
+
 
 
 device = config.DEVICE
@@ -58,6 +65,7 @@ optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
 # ---------------------------
 # 4. Training Loop with Progress Bar
 # ---------------------------
+
 def train(model, loader, optimizer, criterion, device):
     model.train()
     running_loss = 0
@@ -115,9 +123,33 @@ def evaluate(model, loader, criterion, device):
 # ---------------------------
 # 6. Run Training with tqdm
 # ---------------------------
-epochs = config.NUM_EPOCHS
-for epoch in range(epochs):
-    print(f"\nEpoch {epoch+1}/{epochs}")
+
+
+# Load weights if resumeFromSessionId provided
+startEpoch = session.loadWeightsFromSource(model, optimizer)
+
+if(startEpoch == config.NUM_EPOCHS ):
+  print(f"model alredy trinned {config.NUM_EPOCHS} epochs")
+
+for epoch in range(startEpoch, config.NUM_EPOCHS):
+    print(f"\nEpoch {epoch+1}/{config.NUM_EPOCHS}")
     train_loss, train_acc = train(model, trainDataLoader, optimizer, criterion, device)
     test_loss, test_acc = evaluate(model, testDataLoader, criterion, device)
     print(f"Train Loss: {train_loss:.4f} Acc: {train_acc:.2f}% | Test Loss: {test_loss:.4f} Acc: {test_acc:.2f}%")
+
+    session.logger.info(
+        f"train_loss={train_loss:.4f}, train_acc={train_acc:.4f}, "
+        f"test_loss={test_loss:.4f}, test_acc={test_acc:.4f}",
+        extra={"epoch": epoch}
+    )
+    session.logMetric(
+        epoch,
+        train_loss=train_loss,
+        train_acc=train_acc,
+        test_loss=test_loss,
+        test_acc=test_acc
+    )
+    session.saveCheckpoint(model, optimizer, epoch)
+
+session.saveFinalModel(model)
+

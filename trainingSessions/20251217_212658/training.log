@@ -1,0 +1,9 @@
+2025-12-17 21:28:11,083 | INFO | epoch=8 | train_loss=0.6569, train_acc=76.8880, test_loss=0.8370, test_acc=71.7300
+2025-12-17 21:29:23,806 | INFO | epoch=9 | train_loss=0.6180, train_acc=78.1800, test_loss=0.8447, test_acc=71.2400
+2025-12-17 21:30:41,736 | INFO | epoch=10 | train_loss=0.5814, train_acc=79.4400, test_loss=0.8446, test_acc=71.8300
+2025-12-17 21:31:57,097 | INFO | epoch=11 | train_loss=0.5404, train_acc=80.7860, test_loss=0.8516, test_acc=72.0100
+2025-12-17 21:33:09,907 | INFO | epoch=12 | train_loss=0.5084, train_acc=81.9900, test_loss=0.8372, test_acc=72.8300
+2025-12-17 21:34:19,600 | INFO | epoch=13 | train_loss=0.4842, train_acc=82.8140, test_loss=0.8620, test_acc=72.0200
+2025-12-17 21:35:29,512 | INFO | epoch=14 | train_loss=0.4481, train_acc=84.0360, test_loss=0.9524, test_acc=69.5000
+2025-12-17 21:36:45,408 | INFO | epoch=15 | train_loss=0.4156, train_acc=85.3160, test_loss=0.8989, test_acc=72.7300
+2025-12-17 21:38:00,263 | INFO | epoch=16 | train_loss=0.3936, train_acc=86.0000, test_loss=0.9158, test_acc=72.4100

@@ -6,7 +6,6 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #### session parameters
 SESSION_DIR = "./trainingSessions/"
 CONFIG_PATH = "./configs/config.py"
-RESUME_SESSION_ID = "last"    # accept None , "last", "String ID"
 
 #### dataset parameters
 NUM_CLASSES = 10 

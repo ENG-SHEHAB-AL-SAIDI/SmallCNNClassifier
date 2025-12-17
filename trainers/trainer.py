@@ -1,22 +1,114 @@
+from os import path
+import torch
+import torch.nn as nn
+import torch.optim as optim
 from torchvision import transforms
 from torch.utils.data import DataLoader
+from dataset import CNNClassifierDataset
+from models.CNNClassifier import CNNClassifier 
+from dataset.CNNClassifierDataset import CNNClassifierDataset
+import configs.config as config
 
-from dataset.dataset import CNNClassifierDataset
+
+torch.manual_seed(config.RANDOM_SEED)
 
 transform = transforms.Compose([
-    transforms.Resize((32, 32)),
+    transforms.Resize(config.IMAGE_SIZE),
     transforms.ToTensor()
 ])
 
-dataset = CNNClassifierDataset(
-    rootDir="dataset",
+trainDataset = CNNClassifierDataset(
+    rootDir=path.join(config.DATASET_PATH, "train"),
     transform=transform
 )
 
-dataLoader = DataLoader(
-    dataset,
-    batchSize=32,
-    shuffle=True
+testDataset = CNNClassifierDataset(
+    rootDir=path.join(config.DATASET_PATH, "test"),
+    transform=transform
 )
 
-print(dataset.classToIdx)
+trainDataLoader = DataLoader(
+    dataset=trainDataset,
+    batchSize=config.BATCH_SIZE,
+    shuffle=True,
+    num_workers=config.NUM_WORKERS,
+    pin_memory=config.PIN_MEMORY
+)
+
+testDataLoader = DataLoader(
+    dataset=testDataset,
+    batchSize=config.BATCH_SIZE,
+    shuffle=True,
+    num_workers=config.NUM_WORKERS,
+    pin_memory=config.PIN_MEMORY
+)
+
+print(CNNClassifierDataset.classToIdx)
+
+
+device = config.DEVICE
+model = CNNClassifier().to(device)
+
+# ---------------------------
+# 3. Loss & Optimizer
+# ---------------------------
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
+
+# ---------------------------
+# 4. Training Loop
+# ---------------------------
+def train(model, loader, optimizer, criterion, device):
+    model.train()
+    running_loss = 0
+    correct = 0
+    total = 0
+
+    for x, y in loader:
+        x, y = x.to(device), y.to(device)
+
+        optimizer.zero_grad()
+        outputs = model(x)
+        loss = criterion(outputs, y)
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item() * x.size(0)
+        _, predicted = outputs.max(1)
+        total += y.size(0)
+        correct += predicted.eq(y).sum().item()
+
+    epoch_loss = running_loss / total
+    accuracy = 100. * correct / total
+    return epoch_loss, accuracy
+
+# ---------------------------
+# 5. Evaluation Loop
+# ---------------------------
+def evaluate(model, loader, criterion, device):
+    model.eval()
+    running_loss = 0
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for x, y in loader:
+            x, y = x.to(device), y.to(device)
+            outputs = model(x)
+            loss = criterion(outputs, y)
+            running_loss += loss.item() * x.size(0)
+            _, predicted = outputs.max(1)
+            total += y.size(0)
+            correct += predicted.eq(y).sum().item()
+
+    epoch_loss = running_loss / total
+    accuracy = 100. * correct / total
+    return epoch_loss, accuracy
+
+# ---------------------------
+# 6. Run Training
+# ---------------------------
+epochs = config.NUM_EPOCHS
+for epoch in range(epochs):
+    train_loss, train_acc = train(model, trainDataLoader, optimizer, criterion, device)
+    test_loss, test_acc = evaluate(model, testDataLoader, criterion, device)
+    print(f"Epoch {epoch+1}/{epochs} | Train Loss: {train_loss:.4f} Acc: {train_acc:.2f}% | Test Loss: {test_loss:.4f} Acc: {test_acc:.2f}%")

@@ -1,0 +1,11 @@
+2025-12-17 22:22:55,545 | INFO | epoch=19 | Resuming from session '20251217_222237', checkpoint 'epoch_019.pth', epoch=20
+2025-12-17 22:24:07,750 | INFO | epoch=20 | train_loss=0.2938, train_acc=89.4020, test_loss=1.0875, test_acc=72.0600
+2025-12-17 22:25:18,794 | INFO | epoch=21 | train_loss=0.2739, train_acc=90.1520, test_loss=1.1148, test_acc=71.2200
+2025-12-17 22:26:30,726 | INFO | epoch=22 | train_loss=0.2553, train_acc=90.8040, test_loss=1.2033, test_acc=70.8600
+2025-12-17 22:27:43,926 | INFO | epoch=23 | train_loss=0.2398, train_acc=91.2660, test_loss=1.2265, test_acc=70.9600
+2025-12-17 22:28:53,587 | INFO | epoch=24 | train_loss=0.2246, train_acc=91.9240, test_loss=1.2262, test_acc=72.1500
+2025-12-17 22:30:05,065 | INFO | epoch=25 | train_loss=0.2144, train_acc=92.2100, test_loss=1.3298, test_acc=71.2400
+2025-12-17 22:31:18,013 | INFO | epoch=26 | train_loss=0.1992, train_acc=92.7720, test_loss=1.3698, test_acc=70.6600
+2025-12-17 22:32:29,712 | INFO | epoch=27 | train_loss=0.1731, train_acc=93.7900, test_loss=1.4252, test_acc=71.8400
+2025-12-17 22:33:40,831 | INFO | epoch=28 | train_loss=0.1689, train_acc=93.8520, test_loss=1.5125, test_acc=70.3700
+2025-12-17 22:34:52,017 | INFO | epoch=29 | train_loss=0.1678, train_acc=93.8680, test_loss=1.5566, test_acc=70.8100

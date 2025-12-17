@@ -20,4 +20,4 @@ PIN_MEMORY = True
 #### hyperparameters 
 LEARNING_RATE = 0.001
 BATCH_SIZE = 64
-NUM_EPOCHS = 30
+NUM_EPOCHS = 20

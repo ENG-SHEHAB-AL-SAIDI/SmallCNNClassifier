@@ -153,12 +153,12 @@ class TrainingSessionManager:
 
         msg = f"Resuming from session '{self.sourceSessionDir.name}', checkpoint '{lastCheckpoint.name}'"
         if train_loss is not None and train_acc is not None and test_loss is not None and test_acc is not None:
-            msg += f", epoch={last_epoch}, train_loss={train_loss:.4f}, train_acc={train_acc:.4f}, test_loss={test_loss:.4f}, test_acc={test_acc:.4f}"
+            msg += f", epoch={last_epoch+1}, train_loss={train_loss:.4f}, train_acc={train_acc:.4f}, test_loss={test_loss:.4f}, test_acc={test_acc:.4f}"
         else:
-            msg += f", epoch={last_epoch if last_epoch is not None else 'unknown'}"
+            msg += f", epoch={(last_epoch+1) if last_epoch is not None else 'unknown'}"
 
         self.logger.info(msg, extra={"epoch": last_epoch if last_epoch is not None else 0})
-        print(msg, extra={"epoch": last_epoch if last_epoch is not None else 0})
+        print(msg)
 
         return last_epoch + 1 if last_epoch is not None else 0
 

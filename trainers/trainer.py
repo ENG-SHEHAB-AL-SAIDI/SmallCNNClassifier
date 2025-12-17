@@ -130,6 +130,7 @@ startEpoch = session.loadWeightsFromSource(model, optimizer)
 
 if(startEpoch == config.NUM_EPOCHS ):
   print(f"model alredy trinned {config.NUM_EPOCHS} epochs")
+  session.saveCheckpoint(model, optimizer, config.NUM_EPOCHS-1)
 
 for epoch in range(startEpoch, config.NUM_EPOCHS):
     print(f"\nEpoch {epoch+1}/{config.NUM_EPOCHS}")

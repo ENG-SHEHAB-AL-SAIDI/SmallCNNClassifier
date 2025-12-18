@@ -5,7 +5,7 @@ import torch.optim as optim
 from tqdm import tqdm  
 from torchvision import transforms
 from torch.utils.data import DataLoader
-from models.CNNClassifier import CNNClassifier 
+from models.CNNClassifier3 import CNNClassifier3
 from dataset.CNNClassifierDataset import CNNClassifierDataset
 import configs.config as config
 from utils.sessionManager import TrainingSessionManager
@@ -54,7 +54,7 @@ session = TrainingSessionManager(
 
 
 device = config.DEVICE
-model = CNNClassifier().to(device)
+model = CNNClassifier3().to(device)
 
 # ---------------------------
 # 3. Loss & Optimizer

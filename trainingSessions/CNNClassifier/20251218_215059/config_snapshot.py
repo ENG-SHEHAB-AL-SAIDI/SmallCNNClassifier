@@ -4,7 +4,7 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 #### session parameters
-SESSION_DIR = "./trainingSessions/CNNClassifier3/"
+SESSION_DIR = "./trainingSessions/"
 CONFIG_PATH = "./configs/config.py"
 RESUME_SESSION_ID = "last"    # accept None , "last", "String ID"
 
@@ -19,5 +19,5 @@ PIN_MEMORY = True
 
 #### hyperparameters 
 LEARNING_RATE = 0.001
-BATCH_SIZE = 128
-NUM_EPOCHS = 20
+BATCH_SIZE = 64
+NUM_EPOCHS = 40

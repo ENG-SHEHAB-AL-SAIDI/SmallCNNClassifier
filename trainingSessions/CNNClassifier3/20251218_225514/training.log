@@ -1,0 +1,21 @@
+2025-12-18 22:55:14,787 | INFO | epoch=0 | No checkpoints found in session 20251218_224956, training from scratch.
+2025-12-18 22:56:03,199 | INFO | epoch=0 | train_loss=1.7677, train_acc=31.2080, test_loss=1.5391, test_acc=40.3700
+2025-12-18 22:56:50,458 | INFO | epoch=1 | train_loss=1.3858, train_acc=49.4580, test_loss=1.3289, test_acc=51.1000
+2025-12-18 22:57:39,079 | INFO | epoch=2 | train_loss=1.2390, train_acc=56.5480, test_loss=1.1245, test_acc=60.4700
+2025-12-18 22:58:25,927 | INFO | epoch=3 | train_loss=1.1485, train_acc=60.2860, test_loss=1.7046, test_acc=45.7300
+2025-12-18 22:59:14,356 | INFO | epoch=4 | train_loss=1.0824, train_acc=62.6940, test_loss=1.0810, test_acc=62.3200
+2025-12-18 23:00:01,310 | INFO | epoch=5 | train_loss=1.0335, train_acc=64.7940, test_loss=1.2337, test_acc=57.3100
+2025-12-18 23:00:50,011 | INFO | epoch=6 | train_loss=0.9957, train_acc=66.2320, test_loss=1.3582, test_acc=54.3700
+2025-12-18 23:01:39,286 | INFO | epoch=7 | train_loss=0.9573, train_acc=67.7240, test_loss=0.9938, test_acc=65.4600
+2025-12-18 23:02:26,953 | INFO | epoch=8 | train_loss=0.9287, train_acc=68.8000, test_loss=1.0203, test_acc=64.6200
+2025-12-18 23:03:16,442 | INFO | epoch=9 | train_loss=0.8925, train_acc=69.9340, test_loss=1.0992, test_acc=63.8500
+2025-12-18 23:04:04,723 | INFO | epoch=10 | train_loss=0.8669, train_acc=70.9840, test_loss=1.2181, test_acc=61.1700
+2025-12-18 23:04:52,586 | INFO | epoch=11 | train_loss=0.8427, train_acc=71.7680, test_loss=0.9482, test_acc=67.8800
+2025-12-18 23:05:41,408 | INFO | epoch=12 | train_loss=0.8284, train_acc=72.3180, test_loss=1.0857, test_acc=63.9900
+2025-12-18 23:06:29,063 | INFO | epoch=13 | train_loss=0.8053, train_acc=73.1260, test_loss=0.9368, test_acc=68.5200
+2025-12-18 23:07:17,937 | INFO | epoch=14 | train_loss=0.7837, train_acc=73.8900, test_loss=1.0696, test_acc=66.0000
+2025-12-18 23:08:06,559 | INFO | epoch=15 | train_loss=0.7664, train_acc=74.2880, test_loss=0.9834, test_acc=68.4800
+2025-12-18 23:08:53,845 | INFO | epoch=16 | train_loss=0.7518, train_acc=74.8920, test_loss=0.9301, test_acc=69.2700
+2025-12-18 23:09:42,771 | INFO | epoch=17 | train_loss=0.7329, train_acc=75.7120, test_loss=0.9695, test_acc=69.7100
+2025-12-18 23:10:30,099 | INFO | epoch=18 | train_loss=0.7238, train_acc=75.9080, test_loss=1.1754, test_acc=63.4200
+2025-12-18 23:11:18,891 | INFO | epoch=19 | train_loss=0.7071, train_acc=76.4360, test_loss=0.9769, test_acc=68.6400

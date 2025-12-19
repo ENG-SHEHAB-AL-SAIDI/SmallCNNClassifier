@@ -1,0 +1,6 @@
+2025-12-19 01:23:29,482 | INFO | epoch=34 | Resuming from session '20251219_011749', checkpoint 'epoch_034.pth', epoch=35
+2025-12-19 01:24:32,519 | INFO | epoch=35 | train_loss=0.8043, train_acc=73.9720, test_loss=0.9766, test_acc=71.2900
+2025-12-19 01:25:36,457 | INFO | epoch=36 | train_loss=0.7979, train_acc=74.2820, test_loss=1.0259, test_acc=70.0900
+2025-12-19 01:26:40,173 | INFO | epoch=37 | train_loss=0.7961, train_acc=74.4920, test_loss=1.0254, test_acc=70.0100
+2025-12-19 01:27:42,644 | INFO | epoch=38 | train_loss=0.7837, train_acc=74.6080, test_loss=0.9917, test_acc=70.5300
+2025-12-19 01:28:46,832 | INFO | epoch=39 | train_loss=0.7894, train_acc=74.6080, test_loss=1.0344, test_acc=70.0000

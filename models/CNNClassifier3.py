@@ -11,10 +11,10 @@ class CNNClassifier3(nn.Module):
         super().__init__()
 
         self.c0 = nn.Conv2d(3, 8, 3, padding=1)
-        self.bn0 = nn.BatchNorm2d(16)
+        self.bn0 = nn.BatchNorm2d(8)
         self.p0 = nn.MaxPool2d(2, 2)
 
-        self.c1 = nn.Conv2d(3, 16, 3, padding=1)
+        self.c1 = nn.Conv2d(8, 16, 3, padding=1)
         self.bn1 = nn.BatchNorm2d(16)
         self.p1 = nn.MaxPool2d(2, 2)
 
@@ -27,12 +27,12 @@ class CNNClassifier3(nn.Module):
         self.p3 = nn.MaxPool2d(2, 2)
 
         self.flat = nn.Flatten()
-        self.fc1 = nn.Linear(64*4*4, 128)
-        self.drop1 = nn.Dropout(0.3) 
+        self.fc1 = nn.Linear(64*2*2, 128)
+        self.drop1 = nn.Dropout(0.5) 
         self.fc2 = nn.Linear(128, 64)
-        self.drop2 = nn.Dropout(0.3) 
+        self.drop2 = nn.Dropout(0.5) 
         self.fc3 = nn.Linear(64, 32)
-        self.drop3 = nn.Dropout(0.3)  
+        self.drop3 = nn.Dropout(0.5)  
         self.fc4 = nn.Linear(32, 10)
 
     def forward(self, x):

@@ -1,0 +1,11 @@
+2025-12-21 00:53:32,551 | INFO | epoch=0 | No checkpoints found in session 20251221_005257, training from scratch.
+2025-12-21 00:54:38,902 | INFO | epoch=0 | train_loss=1.6495, train_acc=37.3060, test_loss=1.3359, test_acc=51.5200
+2025-12-21 00:55:46,907 | INFO | epoch=1 | train_loss=1.3410, train_acc=52.1760, test_loss=1.2124, test_acc=57.4800
+2025-12-21 00:56:55,340 | INFO | epoch=2 | train_loss=1.2342, train_acc=57.1740, test_loss=1.0975, test_acc=61.5400
+2025-12-21 00:58:03,051 | INFO | epoch=3 | train_loss=1.1495, train_acc=60.5060, test_loss=1.0081, test_acc=64.8700
+2025-12-21 00:59:10,009 | INFO | epoch=4 | train_loss=1.0925, train_acc=62.9680, test_loss=0.9977, test_acc=64.8800
+2025-12-21 01:00:16,866 | INFO | epoch=5 | train_loss=1.0590, train_acc=64.1600, test_loss=0.9617, test_acc=67.0600
+2025-12-21 01:01:24,846 | INFO | epoch=6 | train_loss=1.0233, train_acc=65.6480, test_loss=0.9450, test_acc=67.8900
+2025-12-21 01:02:32,049 | INFO | epoch=7 | train_loss=0.9949, train_acc=66.8420, test_loss=0.8869, test_acc=69.9700
+2025-12-21 01:03:39,886 | INFO | epoch=8 | train_loss=0.9698, train_acc=67.4960, test_loss=0.9202, test_acc=68.2200
+2025-12-21 01:04:47,537 | INFO | epoch=9 | train_loss=0.9437, train_acc=68.4220, test_loss=0.8921, test_acc=69.1800

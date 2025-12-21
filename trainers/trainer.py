@@ -5,7 +5,7 @@ import torch.optim as optim
 from tqdm import tqdm  
 from torchvision import transforms
 from torch.utils.data import DataLoader
-from models.CNNClassifier3 import CNNClassifier3
+from models.CNNClassifier4 import CNNClassifier4
 from dataset.CNNClassifierDataset import CNNClassifierDataset
 import configs.config as config
 from utils.sessionManager import TrainingSessionManager
@@ -13,19 +13,31 @@ from utils.sessionManager import TrainingSessionManager
 
 torch.manual_seed(config.RANDOM_SEED)
 
-transform = transforms.Compose([
-    transforms.Resize(config.IMAGE_SIZE),
-    transforms.ToTensor()
+
+
+
+trainTransform = transforms.Compose([
+    # transforms.Resize(config.IMAGE_SIZE),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize(config.DATA_MEAN, config.DATA_STD)
 ])
+
+testTransform = transforms.Compose([
+    # transforms.Resize(config.IMAGE_SIZE),
+    transforms.ToTensor(),
+    transforms.Normalize(config.DATA_MEAN, config.DATA_STD)
+])
+
 
 trainDataset = CNNClassifierDataset(
     rootDir=path.join(config.DATASET_PATH, "train"),
-    transform=transform
+    transform=trainTransform
 )
 
 testDataset = CNNClassifierDataset(
     rootDir=path.join(config.DATASET_PATH, "test"),
-    transform=transform
+    transform=testTransform
 )
 
 trainDataLoader = DataLoader(
@@ -44,6 +56,8 @@ testDataLoader = DataLoader(
     pin_memory=config.PIN_MEMORY
 )
 
+
+
 # CreateSession
 session = TrainingSessionManager(
     baseDir=config.SESSION_DIR,
@@ -54,7 +68,7 @@ session = TrainingSessionManager(
 
 
 device = config.DEVICE
-model = CNNClassifier3().to(device)
+model = CNNClassifier4().to(device)
 
 # ---------------------------
 # 3. Loss & Optimizer

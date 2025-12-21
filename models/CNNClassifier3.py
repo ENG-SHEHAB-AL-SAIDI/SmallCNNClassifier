@@ -28,11 +28,11 @@ class CNNClassifier3(nn.Module):
 
         self.flat = nn.Flatten()
         self.fc1 = nn.Linear(64*2*2, 128)
-        self.drop1 = nn.Dropout(0.5) 
+        self.drop1 = nn.Dropout(0.3) 
         self.fc2 = nn.Linear(128, 64)
-        self.drop2 = nn.Dropout(0.5) 
+        self.drop2 = nn.Dropout(0.3) 
         self.fc3 = nn.Linear(64, 32)
-        self.drop3 = nn.Dropout(0.5)  
+        self.drop3 = nn.Dropout(0.3)  
         self.fc4 = nn.Linear(32, 10)
 
     def forward(self, x):

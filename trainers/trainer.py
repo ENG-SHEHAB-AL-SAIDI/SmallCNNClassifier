@@ -74,7 +74,12 @@ model = CNNClassifier4().to(device)
 # 3. Loss & Optimizer
 # ---------------------------
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
+optimizer = optim.AdamW(model.parameters(), lr=config.LEARNING_RATE,weight_decay=config.WEIGHT_DECAY)
+scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=config.SCHEDULER_FACTORY, patience=config.SCHEDULER_PATIENCE, verbose=True)
+
+bestValAcc = 0
+triggerTimes = 0
+
 
 # ---------------------------
 # 4. Training Loop with Progress Bar
@@ -152,6 +157,9 @@ for epoch in range(startEpoch, config.NUM_EPOCHS):
     test_loss, test_acc = evaluate(model, testDataLoader, criterion, device)
     print(f"Train Loss: {train_loss:.4f} Acc: {train_acc:.2f}% | Test Loss: {test_loss:.4f} Acc: {test_acc:.2f}%")
 
+    # Scheduler step (use validation accuracy)
+    scheduler.step(test_acc)
+    
     session.logger.info(
         f"train_loss={train_loss:.4f}, train_acc={train_acc:.4f}, "
         f"test_loss={test_loss:.4f}, test_acc={test_acc:.4f}",
@@ -165,6 +173,18 @@ for epoch in range(startEpoch, config.NUM_EPOCHS):
         test_acc=test_acc
     )
     session.saveCheckpoint(model, optimizer, epoch)
+
+    # Early stopping
+    if test_acc > bestValAcc:
+        bestValAcc = test_acc
+        triggerTimes = 0
+    else:
+        triggerTimes += 1
+        if triggerTimes >= config.ERLY_STOP_PATIENCE:
+            print("Early stopping triggered!")
+            session.logger.info(f"Early stopping triggered!"
+        ,extra={"epoch": epoch})
+            break
 
 session.saveFinalModel(model)
 

@@ -4,7 +4,7 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 #### session parameters
-SESSION_DIR = "./trainingSessions/CNNClassifier4/"
+SESSION_DIR = "./trainingSessions/CNNClassifier4v2/"
 CONFIG_PATH = "./configs/config.py"
 # RESUME_SESSION_ID = None    # accept None , "last", "String ID"
 RESUME_SESSION_ID = "last"
@@ -22,5 +22,13 @@ DATA_STD = [0.2470, 0.2435, 0.2616];
 
 #### hyperparameters 
 LEARNING_RATE = 0.001
+WEIGHT_DECAY=1e-4
 BATCH_SIZE = 32
-NUM_EPOCHS = 10
+NUM_EPOCHS = 20
+ERLY_STOP_PATIENCE = 5
+SCHEDULER_PATIENCE = 3
+SCHEDULER_FACTORY = 0.5
+
+
+
+

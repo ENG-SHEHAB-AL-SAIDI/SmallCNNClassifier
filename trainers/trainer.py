@@ -75,7 +75,7 @@ model = CNNClassifier4().to(device)
 # ---------------------------
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.AdamW(model.parameters(), lr=config.LEARNING_RATE,weight_decay=config.WEIGHT_DECAY)
-scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=config.SCHEDULER_FACTORY, patience=config.SCHEDULER_PATIENCE, verbose=True)
+scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=config.SCHEDULER_FACTORY, patience=config.SCHEDULER_PATIENCE)
 
 bestValAcc = 0
 triggerTimes = 0
